@@ -1,0 +1,169 @@
+body {
+    padding: 10px;
+    background-color: rgba(242,221,221,0.7)
+}
+
+.listing_title a:link, .listing_title a:visited{
+    color: black;
+    text-shadow: 2px 2px 3px rgb(248, 126, 126) ;
+}
+
+#create_listing{
+    margin: 35px;
+}
+
+#create_listing input, #create_listing textarea{
+    margin-bottom: 15px;
+}
+
+.add_comment{
+    margin-top: 0px;
+}
+
+#add_comment{
+    width: 450px; 
+    height: 100px;
+    margin-bottom: 13px;
+}
+
+.comments{
+    width: 400px;
+    margin-top: 25px;
+}
+
+.comment{
+    list-style-type: none;
+    background-color: rgba(128, 128, 128, 0.096);
+}
+
+.comment li:first-child{
+    font-weight: bold;
+}
+
+.comment li:nth-child(2){
+    margin-left: 15px;
+    overflow: hidden;
+    hyphens: auto;
+}
+
+.listings{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.listing_container{
+
+    width: 365px;
+    height: 475px;
+    background-color: #f7dcdc;
+    margin-bottom:100px;
+    position: relative;
+    border-radius: 15px;
+}
+
+.listing_title{
+    font-family: 'Saira', sans-serif;
+    margin-top: 0;
+    margin-left: 15px;
+    letter-spacing: 3px;
+}
+
+.listing_container img{
+    margin-left: 25px;
+    border-radius: 10px;
+    max-height: 218px;
+    min-width: 315px;
+}
+
+.description{
+    margin-left: 25px;
+    margin-top: 10px;
+    background-color: #fcd5d5;
+    padding: 5px;
+    border-radius: 15px;
+    font-family: 'Saira', sans-serif;
+    height: 153px;
+    width: 315px;
+    overflow: hidden;
+    text-shadow: 1px 1px #df8686;
+    letter-spacing: 1px;
+}
+
+
+.price{
+    background-color: #eeabab;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    text-align: right;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; 
+    letter-spacing: 3px;
+    font-size: 35px;
+    color: white;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.price::first-letter{
+    color: green;
+}
+
+
+
+/*  Listing  */
+
+
+.title{
+    font-size: 55px;
+    color: white;
+    font-family: "Calibri Light";
+    letter-spacing: 3px;
+    text-shadow: 1px 1px 3px rgba(255,0,0,0.5);
+}
+
+.current_price, .subtitle{
+    font-family: "Calibri Light";
+    color: white;
+    font-size: 50px;
+    text-shadow: 2px 2px 2px rgba(99, 71, 71, 0.5);
+    letter-spacing: 2px;
+
+}
+
+.listing_img{
+    max-width: 850px;
+    min-width: 550px;
+    max-height: 600px;
+}
+
+.listing_description{
+    color: #605D5D;
+    font-family: "Calibri Light";
+    font-size: 32px;
+    letter-spacing: 1.16px;
+    text-shadow: 2px 2px 2px rgba(223,127,127,0.5);
+    width: 65%;
+    margin-top: 30px;
+}
+
+.listing_btn{
+    height: 46px;
+    width: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background-color: rgba(251,140,140,0.87);
+    color: #FFF;
+    font-family: "Calibri Light";
+    font-size: 25px;
+    text-shadow: 0px 2px 2px  rgba(0,0,0,0.5)
+}
+
+
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    width: 50%;
+  }

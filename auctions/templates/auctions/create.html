@@ -1,0 +1,34 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+{% if request.user.id %}
+
+<div id="create_listing">
+
+    <form action="/create" method="POST">
+        {% csrf_token %}
+        {% for item in form%}
+        <li>
+            {{item.label_tag}}
+            <br>
+            {{item}}
+        </li>
+        {%endfor%}
+
+        <input type="submit">
+
+    </form>
+
+</div>
+{% else %}
+
+<div>
+    <h1>
+        You must be logged in to create a listing. <a href="{% url 'login' %}">Login here</a>
+    </h1>
+</div>
+
+{% endif %}
+
+{% endblock %}

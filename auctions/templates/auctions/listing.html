@@ -1,0 +1,118 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+
+<div style="margin:30px">
+
+    {% if not listing.is_open %}
+        <h2 class="alert">
+            This auction is CLOSED.
+        </h2>
+    {% endif %}
+
+    <h4>
+        Category > {{listing.category}}
+    </h4>
+
+        <h1 class="title">
+            {{listing.title}}
+        </h1>
+
+        <h3 class="current_price">
+            Current price: <span style="color: rgb(7, 133, 7)">$</span>{{listing.current_price}}
+        </h3>
+
+        {% if listing.image_url %}
+            <img  class="listing_img" src="{{listing.image_url}}" alt="">
+        {% else %}
+            <img class="listing_img" src="https://us.123rf.com/450wm/infadel/infadel1712/infadel171200119/91684826-a-black-linear-photo-camera-logo-like-no-image-available-.jpg?ver=6" alt="" style="max-width: 400px;">
+        {% endif %}
+
+        <h4 class="listing_description">
+            Description: {{listing.description}}
+        </h4>
+
+        {% if request.user.id %}
+
+            {% if not on_watchlist %}
+                <form action="{% url 'add_to_watchlist' listing.id %}" method="get">
+                    <button class="listing_btn" type="submit">Add Listing to Watchlist</button>
+                </form>
+            {% else %}
+                <form action="{% url 'delete_from_watchlist' listing.id %}" method="get">
+                    <button class="listing_btn" type="submit">Delete from Watchlist</button>
+                </form>
+            {% endif %}
+
+            {% if listing.is_open %}
+            <div>
+                <form action="{% url 'bid' listing.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="number" name="bid" min="{{listing.current_price}}">
+                    <input class="listing_btn" type="submit" value="Bid on item">
+                </form>
+            </div>
+            {% endif %}
+            {% if user == listing.seller and listing.is_open %}
+                
+                <div>
+                    <form action="{% url 'close_auction' listing.id %}" method="post">
+                        {% csrf_token %}
+                        <h5>
+                            You are the owner of this item. Do you want to close the auction?
+                        </h5>
+                        <input class="listing_btn" type="submit" value="Close auction">
+                    </form>
+                </div>
+            {% endif %}
+
+            {% if user == listing.highest_bidder and not listing.is_open %}
+                <h4 class="subtitle">
+                    Congratulations! you have won this auction.
+                </h4>
+            {% endif %}
+        {% endif %}
+
+        <hr>
+
+        <h2 class="title">
+            Comments
+        </h2>
+
+        {% if request.user.id %}
+        <div class="add_comment">
+
+            <form action="{% url 'add_comment' listing.id%}" method="post">
+                {% csrf_token %}
+                <br>
+                <textarea name="add_comment" maxlength="200" required id="add_comment" rows="4" cols="50"> </textarea>
+                <input class="listing_btn" type="submit" value="Comment">
+            </form>
+        </div>
+
+        {% else %}
+
+        <h5>
+            <a href="{% url 'login' %}">Login</a> to post a comment.
+        </h5>
+        {% endif %}
+
+
+        <div class="comments">
+            {% for comment in comments %}
+                <ul class="comment">
+                    <li>
+                        @{{comment.commenter.username}}:
+                    </li>
+                    <li>
+                        {{comment.comment_message}}
+                    </li>
+                </ul>
+            {% endfor %}
+        </div>
+
+        
+</div>
+
+{% endblock %}

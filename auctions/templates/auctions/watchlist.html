@@ -1,0 +1,43 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    <h1>
+        Listings on your Watchlist:
+    </h1>
+    
+    <div class="listings" style="margin:30px">
+
+    {% for listing in watchlist %}
+
+        <div class="listing_container">
+
+            <h3 class="listing_title">
+                <a href="{% url 'listing' listing.id %}">
+                    {{listing}}
+                </a>
+            </h3>
+
+            {% if listing.image_url %}
+                <a href="{% url 'listing' listing.id %}">
+                    <img src={{listing.image_url}} alt="No image provided" width="315px">
+                </a>
+            {% else %}
+                <img src="https://us.123rf.com/450wm/infadel/infadel1712/infadel171200119/91684826-a-black-linear-photo-camera-logo-like-no-image-available-.jpg?ver=6" alt="" style="max-width: 400px;">
+            {% endif %}
+
+            <div class="description">
+                <p>
+                    {{listing.description}}
+                </p> 
+            </div>
+
+            <div class="price">
+                ${{listing.current_price}}
+            </div>
+
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
